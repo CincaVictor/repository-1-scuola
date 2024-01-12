@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rubrica Telefonica</title>
+</head>
+<body>
+
+<h1>Rubrica Telefonica</h1>
+
+<form id="contattoForm">
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" required>
+
+    <label for="cognome">Cognome:</label>
+    <input type="text" id="cognome" required>
+
+    <label for="numeroTelefono">Numero di Telefono:</label>
+    <input type="text" id="numeroTelefono" required>
+
+    <button type="button" onclick="inserisciContatto()">Inserisci Contatto</button>
+</form>
+
+<button type="button" onclick="visualizzaRubrica()">Visualizza Rubrica</button>
+
+<div id="rubricaOutput"></div>
+
+<script>
+    let rubrica = [];
+
+    function inserisciContatto() {
+        let nome = document.getElementById("nome").value;
+        let cognome = document.getElementById("cognome").value;
+        let numeroTelefono = document.getElementById("numeroTelefono").value;
+
+        let nuovoContatto = {
+            nome: nome,
+            cognome: cognome,
+            numeroTelefono: numeroTelefono
+        };
+
+        rubrica.push(nuovoContatto);
+        console.log("Contatto inserito con successo.");
+
+        // Pulisce i campi del modulo dopo l'inserimento
+        document.getElementById("nome").value = "";
+        document.getElementById("cognome").value = "";
+        document.getElementById("numeroTelefono").value = "";
+    }
+
+    function visualizzaRubrica() {
+        let rubricaOutput = document.getElementById("rubricaOutput");
+        rubricaOutput.innerHTML = "<h2>Rubrica telefonica:</h2>";
+
+        rubrica.forEach(contatto => {
+            rubricaOutput.innerHTML += `<p>${contatto.nome} ${contatto.cognome}: ${contatto.numeroTelefono}</p>`;
+        });
+    }
+</script>
+
+</body>
+</html>
